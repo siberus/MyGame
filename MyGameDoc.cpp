@@ -44,6 +44,8 @@ BOOL CMyGameDoc::OnNewDocument()
 		return FALSE;
 
 	// TODO: add reinitialization code here
+	// Установка (или сброс) параметров доски 
+	m_board.SetupBoard();
 	// (SDI documents will reuse this document)
 
 	return TRUE;

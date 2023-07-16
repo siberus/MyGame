@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "CMyGameBoard.h"
 
 class CMyGameDoc : public CDocument
 {
@@ -17,6 +18,18 @@ public:
 
 // Operations
 public:
+
+	// Геттеры для получения информации о параметрах игрового поля 
+	COLORREF GetBoardSpace(int row, int col) 
+	{ 
+		return m_board.GetBoardSpace(row, col); 
+	} 
+	void SetupBoard(void) { m_board.SetupBoard(); } 
+	int GetWidth(void) { return m_board.GetWidth(); } 
+	int GetHeight(void) { return m_board.GetHeight(); } 
+	int GetColumns(void) { return m_board.GetColumns(); } 
+	int GetRows(void) { return m_board.GetRows(); } 
+	void DeleteBoard(void) { m_board.DeleteBoard(); }
 
 // Overrides
 public:
@@ -36,6 +49,8 @@ public:
 #endif
 
 protected:
+	// Экземпляр объекта нашей игровой доски 
+	CMyGameBoard m_board;
 
 // Generated message map functions
 protected:

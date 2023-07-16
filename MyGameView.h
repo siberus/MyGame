@@ -26,6 +26,7 @@ protected:
 
 // Implementation
 public:
+	void ResizeWindow();
 	virtual ~CMyGameView();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
@@ -37,6 +38,8 @@ protected:
 // Generated message map functions
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	virtual void OnInitialUpdate();
 };
 
 #ifndef _DEBUG  // debug version in MyGameView.cpp
