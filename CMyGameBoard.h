@@ -23,6 +23,19 @@ public:
 	void DeleteBoard(void);
 
 private:
+	// ‘ункци€ дл€ создани€ игрового пол€ и выделени€ пам€ти под него 
+	void CreateBoard(void);
 
+	// ”казатель на двумерный массив 
+	int** m_arrBoard;
+
+	// —писок цветов, 0 Ц это цвет фона, 1-3 Ц это цвета блоков 
+	COLORREF m_arrColors[4];
+
+	// »нформаци€ о размере игрового пол€ 
+	int m_nColumns; 
+	int m_nRows; 
+	int m_nHeight; 
+	int m_nWidth;
 };
 
