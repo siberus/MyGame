@@ -19,12 +19,24 @@ public:
 	int GetColumns(void) const { return m_nColumns; } 
 	int GetRows(void) const { return m_nRows; }
 
+	// Мы закончили игру? 
+	bool IsGameOver(void) const;
+	
+	// Подсчет количества оставшихся блоков 
+	int GetRemainingCount(void) const { return m_nRemaining; } 
+	
+	// Функция для удаления всех примыкающих блоков
+	int DeleteBlocks(int row, int col);
+
 	// Функция для удаления игрового поля и освобождения памяти 
 	void DeleteBoard(void);
 
 private:
 	// Функция для создания игрового поля и выделения памяти под него 
 	void CreateBoard(void);
+
+	// Количество оставшихся блоков 
+	int m_nRemaining;
 
 	// Указатель на двумерный массив 
 	int** m_arrBoard;
@@ -37,5 +49,21 @@ private:
 	int m_nRows; 
 	int m_nHeight; 
 	int m_nWidth;
+
+	//Перечисление с вариантами направления(откуда мы пришли) потребуется для удаления блоков 
+	enum Direction
+	{ 
+		DIRECTION_UP, 
+		DIRECTION_DOWN, 
+		DIRECTION_LEFT, 
+		DIRECTION_RIGHT 
+	};
+
+	// Вспомогательная рекурсивная функция для удаления примыкающих блоков 
+	int DeleteNeighborBlocks(int row, int col, int color, 
+		Direction direction);
+
+	// Функция для сжатия доски после того, как были удалены блоки 
+	void CompactBoard(void);
 };
 

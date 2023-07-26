@@ -31,6 +31,17 @@ public:
 	int GetRows(void) { return m_board.GetRows(); } 
 	void DeleteBoard(void) { m_board.DeleteBoard(); }
 
+	bool IsGameOver() { return m_board.IsGameOver(); } 
+	int DeleteBlocks(int row, int col) 
+	{ 
+		return m_board.DeleteBlocks(row, col);
+	} 
+	int GetRemainingCount() 
+	{ 
+		return m_board.GetRemainingCount(); 
+	}
+
+
 // Overrides
 public:
 	virtual BOOL OnNewDocument();
