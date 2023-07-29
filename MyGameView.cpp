@@ -18,12 +18,23 @@
 #endif
 
 
+
 // CMyGameView
 
 IMPLEMENT_DYNCREATE(CMyGameView, CView)
 
 BEGIN_MESSAGE_MAP(CMyGameView, CView)
 	ON_WM_LBUTTONDOWN()
+	ON_COMMAND(ID_DIFFICULT_3COLORS, &CMyGameView::OnDifficult3colors)
+	ON_UPDATE_COMMAND_UI(ID_DIFFICULT_3COLORS, &CMyGameView::OnUpdateDifficult3colors)
+	ON_COMMAND(ID_DIFFICULT_4COLORS, &CMyGameView::OnDifficult4colors)
+	ON_UPDATE_COMMAND_UI(ID_DIFFICULT_4COLORS, &CMyGameView::OnUpdateDifficult4colors)
+	ON_COMMAND(ID_DIFFICULT_5COLORS, &CMyGameView::OnDifficult5colors)
+	ON_UPDATE_COMMAND_UI(ID_DIFFICULT_5COLORS, &CMyGameView::OnUpdateDifficult5colors)
+	ON_COMMAND(ID_DIFFICULT_6COLORS, &CMyGameView::OnDifficult6colors)
+	ON_UPDATE_COMMAND_UI(ID_DIFFICULT_6COLORS, &CMyGameView::OnUpdateDifficult6colors)
+	ON_COMMAND(ID_DIFFICULT_7COLORS, &CMyGameView::OnDifficult7colors)
+	ON_UPDATE_COMMAND_UI(ID_DIFFICULT_7COLORS, &CMyGameView::OnUpdateDifficult7colors)
 END_MESSAGE_MAP()
 
 // CMyGameView construction/destruction
@@ -196,4 +207,96 @@ void CMyGameView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 
 	CView::OnLButtonDown(nFlags, point);
+}
+
+
+void CMyGameView::setColorCount(int numColors) 
+{
+	// Сначала получаем указатель на документ 
+	CMyGameDoc* pDoc = GetDocument(); 
+	ASSERT_VALID(pDoc); 
+	if(!pDoc) 
+		return; 
+	// Устанавливаем количество цветов 
+	pDoc->SetNumColors(numColors); 
+	// Перерисовываем View 
+	Invalidate(); 
+	UpdateWindow(); 
+} 
+void CMyGameView::checkColorCount(CCmdUI* pCmdUI, int numColors)
+{
+	// Сначала получаем указатель на Document 
+	CMyGameDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc); 
+	if(!pDoc) 
+		return; 
+	// Проверка установленного уровня сложности 
+	pCmdUI->SetCheck(pDoc->GetNumColors() ==numColors);
+}
+void CMyGameView::OnDifficult3colors()
+{
+	// TODO: добавьте свой код обработчика команд
+	setColorCount(3);
+}
+
+
+void CMyGameView::OnUpdateDifficult3colors(CCmdUI* pCmdUI)
+{
+	// TODO: добавьте свой код обработчика ИП обновления команд
+	checkColorCount(pCmdUI, 3);
+}
+
+
+void CMyGameView::OnDifficult4colors()
+{
+	// TODO: добавьте свой код обработчика команд
+	setColorCount(4);
+}
+
+
+void CMyGameView::OnUpdateDifficult4colors(CCmdUI* pCmdUI)
+{
+	// TODO: добавьте свой код обработчика ИП обновления команд
+	checkColorCount(pCmdUI, 4);
+}
+
+
+void CMyGameView::OnDifficult5colors()
+{
+	// TODO: добавьте свой код обработчика команд
+	setColorCount(5);
+}
+
+void CMyGameView::OnUpdateDifficult5colors(CCmdUI* pCmdUI)
+{
+	// TODO: добавьте свой код обработчика ИП обновления команд
+	checkColorCount(pCmdUI, 5);
+}
+
+
+void CMyGameView::OnDifficult6colors()
+{
+	// TODO: добавьте свой код обработчика команд
+	setColorCount(6);
+}
+
+
+void CMyGameView::OnUpdateDifficult6colors(CCmdUI* pCmdUI)
+{
+	// TODO: добавьте свой код обработчика ИП обновления команд
+	checkColorCount(pCmdUI, 6);
+}
+
+
+void CMyGameView::OnDifficult7colors()
+{
+	// TODO: добавьте свой код обработчика команд
+	setColorCount(7);
+}
+
+
+void CMyGameView::OnUpdateDifficult7colors(CCmdUI* pCmdUI)
+{
+	// TODO: добавьте свой код обработчика ИП обновления команд
+	checkColorCount(pCmdUI, 7);
 }

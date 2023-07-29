@@ -41,6 +41,19 @@ protected:
 public:
 	virtual void OnInitialUpdate();
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnDifficult3colors();
+	afx_msg void OnUpdateDifficult3colors(CCmdUI* pCmdUI);
+	afx_msg void OnDifficult4colors();
+	afx_msg void OnUpdateDifficult4colors(CCmdUI* pCmdUI);
+	afx_msg void OnDifficult5colors();
+	afx_msg void OnUpdateDifficult5colors(CCmdUI* pCmdUI);
+	afx_msg void OnDifficult6colors();
+	afx_msg void OnUpdateDifficult6colors(CCmdUI* pCmdUI);
+	afx_msg void OnDifficult7colors();
+	afx_msg void OnUpdateDifficult7colors(CCmdUI* pCmdUI);
+
+	void setColorCount(int numColors);
+	void checkColorCount(CCmdUI* pCmdUI, int numColors);
 };
 
 #ifndef _DEBUG  // debug version in MyGameView.cpp

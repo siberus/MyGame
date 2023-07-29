@@ -50,8 +50,14 @@ BOOL CMyGameDoc::OnNewDocument()
 
 	return TRUE;
 }
-
-
+void CMyGameDoc::SetNumColors(int nColors) 
+{
+	// Сначала задаем количество цветов... 
+	m_board.SetNumColors(nColors); 
+	
+	// ...затем устанавливаем параметры игровой доски 
+	m_board.SetupBoard(); 
+}
 
 
 // CMyGameDoc serialization
