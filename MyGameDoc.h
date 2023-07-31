@@ -6,6 +6,7 @@
 #pragma once
 
 #include "CMyGameBoard.h"
+#include <stack>
 
 class CMyGameDoc : public CDocument
 {
@@ -22,29 +23,31 @@ public:
 	// Геттеры для получения информации о параметрах игрового поля 
 	COLORREF GetBoardSpace(int row, int col) 
 	{ 
-		return m_board.GetBoardSpace(row, col); 
+		return m_board->GetBoardSpace(row, col); 
 	} 
-	void SetupBoard(void) { m_board.SetupBoard(); }
-	int GetWidth(void) { return m_board.GetWidth(); }
-	void SetWidth(int nWidth) { m_board.SetWidth(nWidth); }
-	int GetHeight(void) { return m_board.GetHeight(); }
-	void SetHeight(int nHeight) { m_board.SetHeight(nHeight); }
-	int GetColumns(void) { return m_board.GetColumns(); }
-	void SetColumns(int nColumns) { m_board.SetColumns(nColumns); }
-	int GetRows(void) { return m_board.GetRows(); }
-	void SetRows(int nRows) { m_board.SetRows(nRows); }
-	void DeleteBoard(void) { m_board.DeleteBoard(); }
-	bool IsGameOver() { return m_board.IsGameOver(); }
-	int DeleteBlocks(int row, int col)
-	{
-		return m_board.DeleteBlocks(row, col);
-	}
+	void SetupBoard(void) { m_board->SetupBoard(); }
+	int GetWidth(void) { return m_board->GetWidth(); }
+	void SetWidth(int nWidth) { m_board->SetWidth(nWidth); }
+	int GetHeight(void) { return m_board->GetHeight(); }
+	void SetHeight(int nHeight) { m_board->SetHeight(nHeight); }
+	int GetColumns(void) { return m_board->GetColumns(); }
+	void SetColumns(int nColumns) { m_board->SetColumns(nColumns); }
+	int GetRows(void) { return m_board->GetRows(); }
+	void SetRows(int nRows) { m_board->SetRows(nRows); }
+	void DeleteBoard(void) { m_board->DeleteBoard(); }
+	bool IsGameOver() { return m_board->IsGameOver(); }
+	int DeleteBlocks(int row, int col);
+	//{	return m_board->DeleteBlocks(row, col);	}
 	int GetRemainingCount()
 	{
-		return m_board.GetRemainingCount();
+		return m_board->GetRemainingCount();
 	}
-	int GetNumColors() { return m_board.GetNumColors(); }
+	int GetNumColors() { return m_board->GetNumColors(); }
 	void SetNumColors(int nColors);
+	void UndoLast();
+	bool CanUndo();
+	void RedoLast();
+	bool CanRedo();
 
 // Overrides
 public:
@@ -64,8 +67,15 @@ public:
 #endif
 
 protected:
+	/*  Функции для очистки стеков "Отмены/Повтора" */
+	void ClearUndo();
+	void ClearRedo();
 	// Экземпляр объекта нашей игровой доски 
-	CMyGameBoard m_board;
+	CMyGameBoard* m_board;
+	/*  Стек отмены */
+	std::stack<CMyGameBoard*> m_undo;
+	/*  Стек повтора */
+	std::stack<CMyGameBoard*> m_redo;
 
 // Generated message map functions
 protected:

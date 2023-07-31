@@ -184,6 +184,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CMyGameBoard.h" />
+    <ClInclude Include="COptionDialog.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MyGame.h" />
@@ -195,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMyGameBoard.cpp" />
+    <ClCompile Include="COptionDialog.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="MyGameDoc.cpp" />

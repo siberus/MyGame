@@ -129,6 +129,8 @@ protected:
 // Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedButton1();
 };
 
 CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
@@ -141,6 +143,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	ON_BN_CLICKED(IDC_BUTTON_DEFAULTS, &CAboutDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 // App command to run the dialog
@@ -154,3 +157,9 @@ void CMyGameApp::OnAppAbout()
 
 
 
+
+
+void CAboutDlg::OnBnClickedButton1()
+{
+	// TODO: добавьте свой код обработчика уведомлений
+}

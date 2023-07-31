@@ -12,10 +12,12 @@
 
 #include "MyGameDoc.h"
 #include "MyGameView.h"
+#include "COptionDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
 
 
 
@@ -35,6 +37,8 @@ BEGIN_MESSAGE_MAP(CMyGameView, CView)
 	ON_UPDATE_COMMAND_UI(ID_DIFFICULT_6COLORS, &CMyGameView::OnUpdateDifficult6colors)
 	ON_COMMAND(ID_DIFFICULT_7COLORS, &CMyGameView::OnDifficult7colors)
 	ON_UPDATE_COMMAND_UI(ID_DIFFICULT_7COLORS, &CMyGameView::OnUpdateDifficult7colors)
+	ON_COMMAND(ID_SETUP_BLOCKSSIZE, &CMyGameView::OnSetupBlockssize)
+	ON_COMMAND(ID_SETUP_NUMBEROFBLOCKS, &CMyGameView::OnSetupNumberofblocks)
 END_MESSAGE_MAP()
 
 // CMyGameView construction/destruction
@@ -299,4 +303,75 @@ void CMyGameView::OnUpdateDifficult7colors(CCmdUI* pCmdUI)
 {
 	// TODO: добавьте свой код обработчика ИП обновления команд
 	checkColorCount(pCmdUI, 7);
+}
+
+
+void CMyGameView::OnSetupBlockssize()
+{
+	// TODO: добавьте свой код обработчика команд
+	// Указатель на Document 
+	CMyGameDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	if (!pDoc)
+		return;
+
+	// Создаем диалоговое окно 
+	COptionDialog dlg(false, this);
+
+	// Устанавливаем параметры «Ширины/Высоты» 
+	dlg.m_nValue1 = pDoc->GetWidth();
+	dlg.m_nValue2 = pDoc->GetHeight();
+
+	// Отображаем окно 
+	if (dlg.DoModal() == IDOK)
+	{
+		// Удаляем игровое поле 
+		pDoc->DeleteBoard();
+
+		// Считываем введенные пользователем параметры 
+		pDoc->SetWidth(dlg.m_nValue1);
+		pDoc->SetHeight(dlg.m_nValue2);
+
+		// Обновляем игровую доску 
+		pDoc->SetupBoard();
+
+		// Изменяем размеры View 
+		ResizeWindow();
+	}
+}
+
+
+void CMyGameView::OnSetupNumberofblocks()
+{
+	// TODO: добавьте свой код обработчика команд
+
+// Получаем указатель на Document 
+	CMyGameDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	if (!pDoc)
+		return;
+
+	// Создаем диалоговое окно 
+	COptionDialog dlg(true, this);
+
+	// Устанавливаем параметры строк и столбцов 
+	dlg.m_nValue1 = pDoc->GetRows();
+	dlg.m_nValue2 = pDoc->GetColumns();
+
+	// Отображаем полученное окно 
+	if (dlg.DoModal() == IDOK)
+	{
+		// Сначала удаляем игровое поле 
+		pDoc->DeleteBoard();
+
+		// Устанавливаем значения, переданные пользователем 
+		pDoc->SetRows(dlg.m_nValue1);
+		pDoc->SetColumns(dlg.m_nValue2);
+
+		// Обновляем игровое поле 
+		pDoc->SetupBoard();
+
+		// Изменяем размеры View 
+		ResizeWindow();
+	}
 }

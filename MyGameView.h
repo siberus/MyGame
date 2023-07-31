@@ -54,6 +54,8 @@ public:
 
 	void setColorCount(int numColors);
 	void checkColorCount(CCmdUI* pCmdUI, int numColors);
+	afx_msg void OnSetupBlockssize();
+	afx_msg void OnSetupNumberofblocks();
 };
 
 #ifndef _DEBUG  // debug version in MyGameView.cpp
